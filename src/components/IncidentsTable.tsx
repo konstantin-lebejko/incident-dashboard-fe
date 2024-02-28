@@ -1,4 +1,4 @@
-import { Table } from "@mantine/core";
+import { Table, LoadingOverlay, Box } from "@mantine/core";
 
 const elements = [
   { position: 6, mass: 12.011, symbol: "C", name: "Carbon" },
@@ -19,17 +19,27 @@ const IncidentsTable: React.FC = () => {
   ));
 
   return (
-    <Table>
-      <Table.Thead>
-        <Table.Tr>
-          <Table.Th>Element position</Table.Th>
-          <Table.Th>Element name</Table.Th>
-          <Table.Th>Symbol</Table.Th>
-          <Table.Th>Atomic mass</Table.Th>
-        </Table.Tr>
-      </Table.Thead>
-      <Table.Tbody>{rows}</Table.Tbody>
-    </Table>
+    <>
+      <Box pos="relative">
+        <LoadingOverlay
+          visible={true}
+          zIndex={1000}
+          overlayProps={{ radius: "sm", blur: 5 }}
+        />
+        <Table verticalSpacing="md">
+          <Table.Thead>
+            <Table.Tr>
+              <Table.Th>Created</Table.Th>
+              <Table.Th>ID</Table.Th>
+              <Table.Th>Status</Table.Th>
+              <Table.Th>Title</Table.Th>
+              <Table.Th>Category</Table.Th>
+            </Table.Tr>
+          </Table.Thead>
+          <Table.Tbody>{rows}</Table.Tbody>
+        </Table>
+      </Box>
+    </>
   );
 };
 
